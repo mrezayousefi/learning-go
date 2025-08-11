@@ -1,0 +1,79 @@
+package main
+
+import (
+	"fmt"
+)
+
+// تعریف یک struct
+type Person struct {
+	Name string
+	Age  int
+}
+
+// تابعی برای ساخت یک Person جدید
+func NewPerson(name string, age int) Person {
+	return Person{Name: name, Age: age}
+}
+
+// تابعی که سن را برمی‌گرداند
+func (p Person) GetAge() int {
+	return p.Age
+}
+
+func main() {
+	// ---- متغیرها و انواع داده‌ای پایه ----
+	var x int = 10
+	y := 3.14
+	var name string = "Golang"
+	var isFun bool = true
+
+	fmt.Println("x:", x)
+	fmt.Println("y:", y)
+	fmt.Println("name:", name)
+	fmt.Println("isFun:", isFun)
+
+	// ---- حلقه for ----
+	fmt.Println("\nLoop with counter:")
+	for i := 0; i < 5; i++ {
+		fmt.Println(i)
+	}
+
+	// ---- آرایه ----
+	var numbers [3]int = [3]int{1, 2, 3}
+	fmt.Println("\nArray:", numbers)
+
+	// پیمایش آرایه با range
+	for index, value := range numbers {
+		fmt.Println("Index:", index, "Value:", value)
+	}
+
+	// ---- slice ----
+	slice := []string{"Go", "is", "awesome"}
+	fmt.Println("\nSlice:", slice)
+	fmt.Println("len:", len(slice), "cap:", cap(slice))
+
+	// append
+	slice = append(slice, "language")
+	fmt.Println("After append:", slice)
+	fmt.Println("len:", len(slice), "cap:", cap(slice))
+
+	// make
+	madeSlice := make([]int, 2, 5) // طول 2، ظرفیت 5
+	fmt.Println("Made slice:", madeSlice, "len:", len(madeSlice), "cap:", cap(madeSlice))
+
+	// ---- struct ----
+	p1 := NewPerson("Alice", 25)
+	p2 := Person{Name: "Bob", Age: 30}
+
+	fmt.Println("\nPerson 1:", p1.Name, p1.GetAge())
+	fmt.Println("Person 2:", p2.Name, p2.GetAge())
+
+	// ---- تابع چند مقداری ----
+	a, b := swap("Hello", "World")
+	fmt.Println("\nAfter swap:", a, b)
+}
+
+// تابع با چند مقدار بازگشتی
+func swap(first string, second string) (string, string) {
+	return second, first
+}
