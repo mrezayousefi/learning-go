@@ -4,76 +4,71 @@ import (
 	"fmt"
 )
 
-// تعریف یک struct
+// ثابت‌ها (constants) -> مقدارشان تغییر نمی‌کند
+const Pi = 3.14
+
+// ساختار (struct) -> نوع داده مرکب که چند مقدار مختلف را در خود نگه می‌دارد
 type Person struct {
 	Name string
 	Age  int
 }
 
-// تابعی برای ساخت یک Person جدید
-func NewPerson(name string, age int) Person {
-	return Person{Name: name, Age: age}
-}
-
-// تابعی که سن را برمی‌گرداند
-func (p Person) GetAge() int {
-	return p.Age
-}
-
 func main() {
-	// ---- متغیرها و انواع داده‌ای پایه ----
-	var x int = 10
-	y := 3.14
-	var name string = "Golang"
-	var isFun bool = true
+	// --- متغیرها (variables) ---
+	var greeting string = "Welcome to Go!" // تعریف متغیر به روش کامل
+	year := 2025                           // تعریف متغیر به روش کوتاه
+	isLearning := true                     // نوع bool
 
-	fmt.Println("x:", x)
-	fmt.Println("y:", y)
-	fmt.Println("name:", name)
-	fmt.Println("isFun:", isFun)
+	// چاپ مقادیر متغیرها
+	fmt.Println(greeting, "Year:", year, "Learning Go?", isLearning)
 
-	// ---- حلقه for ----
-	fmt.Println("\nLoop with counter:")
-	for i := 0; i < 5; i++ {
-		fmt.Println(i)
+	// --- آرایه (array) ---
+	// آرایه طول ثابت دارد
+	var numbers = [3]int{10, 20, 30}
+	fmt.Println("Array:", numbers)
+
+	// --- برش (slice) ---
+	// برش مانند آرایه است ولی طولش می‌تواند تغییر کند
+	fruits := []string{"Apple", "Banana", "Cherry"}
+	fruits = append(fruits, "Orange") // اضافه کردن مقدار جدید
+	fmt.Println("Slice:", fruits)
+
+	// --- ساختار و نمونه‌سازی (struct instance) ---
+	person := Person{Name: "Ali", Age: 25}
+	fmt.Println("Person:", person.Name, "Age:", person.Age)
+
+	// --- شرط (if, else) ---
+	if person.Age >= 18 {
+		fmt.Println(person.Name, "is an adult.") // اگر سن بیشتر یا مساوی ۱۸ باشد
+	} else {
+		fmt.Println(person.Name, "is a minor.") // در غیر این صورت
 	}
 
-	// ---- آرایه ----
-	var numbers [3]int = [3]int{1, 2, 3}
-	fmt.Println("\nArray:", numbers)
-
-	// پیمایش آرایه با range
-	for index, value := range numbers {
-		fmt.Println("Index:", index, "Value:", value)
+	// --- شرط با switch ---
+	day := 3
+	switch day {
+	case 1:
+		fmt.Println("Monday")
+	case 2:
+		fmt.Println("Tuesday")
+	case 3:
+		fmt.Println("Wednesday")
+	default:
+		fmt.Println("Another day")
 	}
 
-	// ---- slice ----
-	slice := []string{"Go", "is", "awesome"}
-	fmt.Println("\nSlice:", slice)
-	fmt.Println("len:", len(slice), "cap:", cap(slice))
+	// --- حلقه for ---
+	// حلقه‌ای که ۳ بار اجرا می‌شود
+	for i := 0; i < 3; i++ {
+		fmt.Println("Loop count:", i)
+	}
 
-	// append
-	slice = append(slice, "language")
-	fmt.Println("After append:", slice)
-	fmt.Println("len:", len(slice), "cap:", cap(slice))
-
-	// make
-	madeSlice := make([]int, 2, 5) // طول 2، ظرفیت 5
-	fmt.Println("Made slice:", madeSlice, "len:", len(madeSlice), "cap:", cap(madeSlice))
-
-	// ---- struct ----
-	p1 := NewPerson("Alice", 25)
-	p2 := Person{Name: "Bob", Age: 30}
-
-	fmt.Println("\nPerson 1:", p1.Name, p1.GetAge())
-	fmt.Println("Person 2:", p2.Name, p2.GetAge())
-
-	// ---- تابع چند مقداری ----
-	a, b := swap("Hello", "World")
-	fmt.Println("\nAfter swap:", a, b)
+	// --- تابع (function) ---
+	// فراخوانی تابع محاسبه مساحت دایره
+	fmt.Println("Area of circle with radius 5:", areaOfCircle(5))
 }
 
-// تابع با چند مقدار بازگشتی
-func swap(first string, second string) (string, string) {
-	return second, first
+// تابع برای محاسبه مساحت دایره
+func areaOfCircle(radius float64) float64 {
+	return Pi * radius * radius
 }
